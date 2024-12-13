@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平均乱数の計算</title>
+  <style>
+     body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .calculator {
+    max-width: 400px;
+    margin: auto;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2列に設定 */
+    gap: 10px; /* 各入力欄の間隔 */
+  }
+  label {
+    display: block;
+  }
+  input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+    
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>平均乱数の計算</h1>
+    
+        <p>盤面にあるフルーツの数を入力してください</p>
+        <div class="grid-container">
+          <div>
+            <label for="num1">チェリー:</label>
+            <input type="number" id="num1" placeholder="個数を入力">
+          </div>
+    
+          <div>
+            <label for="num2">イチゴ:</label>
+            <input type="number" id="num2" placeholder="個数を入力">
+          </div>
+    
+          <div>
+            <label for="num3">ブドウ:</label>
+            <input type="number" id="num3" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num4">デコポン:</label>
+            <input type="number" id="num4" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num5">カキ:</label>
+            <input type="number" id="num5" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num6">リンゴ:</label>
+            <input type="number" id="num6" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num7">ナシ:</label>
+            <input type="number" id="num7" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num8">モモ:</label>
+            <input type="number" id="num8" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num9">パイン:</label>
+            <input type="number" id="num9" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num10">メロン:</label>
+            <input type="number" id="num10" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num11">スイカ:</label>
+            <input type="number" id="num11" placeholder="個数を入力">
+          </div>
+          <div>
+            <label for="num12">ダブスイ:</label>
+            <input type="number" id="num12" placeholder="回数を入力">
+          </div>
+        </div>
+    
+        <button onclick="calculate()">計算する</button>
+    
+        <div id="result">平均乱数: ここに表示されます</div>
+        <button onclick="resetForm()">リセット</button> <!-- リセットボタン -->
+        
+        <p>参考</p>
+        <p>中央パイン(パ梨梨):613.23</p>
+        <p>メソッド(メパ):1363.45</p>
+        <p>角スイ(ス桃):2104.68</p>
+        <p>スイメロ(スメ):2826.90</p>
+        <p>スイメロパ(スメパ):3266.39</p>
+        <p>沈み梨(スメパ桃梨):3555.00</p>
+        <p>未遂(全果物1つずつ):3587.94</p>
+        <p>ダブスイ(全回収):3871.87</p>
+
+      </div>
+
+  <script>
+    function calculate() {
+      // 入力値を取得
+      const num1 = parseFloat(document.getElementById('num1').value) || 0;
+      const num2 = parseFloat(document.getElementById('num2').value) || 0;
+      const num3 = parseFloat(document.getElementById('num3').value) || 0;
+      const num4 = parseFloat(document.getElementById('num4').value) || 0;
+      const num5 = parseFloat(document.getElementById('num5').value) || 0;
+      const num6 = parseFloat(document.getElementById('num6').value) || 0;
+      const num7 = parseFloat(document.getElementById('num7').value) || 0;
+      const num8 = parseFloat(document.getElementById('num8').value) || 0;
+      const num9 = parseFloat(document.getElementById('num9').value) || 0;
+      const num10 = parseFloat(document.getElementById('num10').value) || 0;
+      const num11 = parseFloat(document.getElementById('num11').value) || 0;
+      const num12 = parseFloat(document.getElementById('num12').value) || 0;
+
+      // 用意された数
+      const preparedNumbers = [-2.0645,-3.1290,-3.2581,-0.5161,8.9677,32.9355,86.8710,201.7419,439.4839,923.9677,1902.9355,3871.8710];
+
+      // 各入力値に対応する用意された数を掛け算
+      const result1 = num1 * preparedNumbers[0];
+      const result2 = num2 * preparedNumbers[1];
+      const result3 = num3 * preparedNumbers[2];
+      const result4 = num4 * preparedNumbers[3];
+      const result5 = num5 * preparedNumbers[4];
+      const result6 = num6 * preparedNumbers[5];
+      const result7 = num7 * preparedNumbers[6];
+      const result8 = num8 * preparedNumbers[7];
+      const result9 = num9 * preparedNumbers[8];
+      const result10 = num10 * preparedNumbers[9];
+      const result11 = num11 * preparedNumbers[10];
+      const result12 = num12 * preparedNumbers[11];
+    
+
+      // 結果の和を計算
+      const total = result1 + result2 + result3+ result4+ result5+ result6+ result7+ result8+ result9+ result10+ result11+ result12;
+
+      // 結果を表示
+      document.getElementById('result').innerText = 
+        `平均乱数: ${total.toFixed(2)}`;
+    }
+  // リセット機能
+    function resetForm() {
+  document.getElementById('num1').value = '';
+  document.getElementById('num2').value = '';
+  document.getElementById('num3').value = '';
+  document.getElementById('num4').value = '';
+  document.getElementById('num5').value = '';
+  document.getElementById('num6').value = '';
+  document.getElementById('num7').value = '';
+  document.getElementById('num8').value = '';
+  document.getElementById('num9').value = '';
+  document.getElementById('num10').value = '';
+  document.getElementById('num11').value = '';
+  document.getElementById('num12').value = '';
+  document.getElementById('result').innerText = '平均乱数: ここに表示されます'; // 結果表示をリセット
+}
+
+  </script>
+</body>
+</html>
